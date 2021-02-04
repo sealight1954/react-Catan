@@ -1,13 +1,42 @@
+* { margin: 0; }
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+  background: linear-gradient(90deg, 
+    crimson 25%, black, dodgerblue 75%);
 }
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.r-hex {
+  overflow: hidden;
+  display: inline-block;
+  margin: 1.5em -1em;
+  width: 20em; height: 17.32em;
+  transform: rotate(-30deg) skewX(30deg);
+  border-radius: .5em;
 }
+.r-hex *, .r-hex *:before {
+  display: block;
+  overflow: hidden;
+  width: inherit; height: inherit;
+  border-radius: inherit;
+}
+.r-hex-inner {
+  transform: skewX(-30deg) rotate(60deg) skewX(30deg);
+  opacity: .15;
+  transition: opacity .75s;
+  cursor: pointer;
+}
+.r-hex:first-child .r-hex-inner:before, .r-hex-inner-2 {
+  transform: skewX(-30deg) rotate(60deg) skewX(30deg);
+  background: orange;
+  content: '';
+}
+.r-hex-inner-2:before {
+  margin-top: -1.5em;
+  height: 20em;
+  transform: skewX(-30deg) rotate(-90deg);
+  background: url(http://images.fineartamerica.com/images-medium-large/sumatran-tiger-cub--panthera-tigris-sumatrae-life-on-white.jpg);
+  background-size: cover;
+  line-height: 20em;
+  text-align: center;
+  content: 'Hello, be a nice kitty...';
+}
+.r-hex-inner:hover { opacity: 1; }

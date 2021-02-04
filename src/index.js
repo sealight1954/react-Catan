@@ -1,17 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+// hexagon tile 1: https://codepen.io/gpyne/pen/iElhp
+// hexagon tile 2: https://www.codesmite.com/article/how-to-create-pure-css-hexagonal-grids
+// hexagon tile 3: https://codepen.io/sandeep/pen/wFeKj
+class Grid extends React.Component{
+    render() {
+        return (
+        <div class='r-hex'>
+            <div class='r-hex-inner'>
+                <div class='r-hex-inner-2'></div>
+            </div>
+        </div>
+        )
+    }
+}
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+    <Grid />,
+    document.getElementById('root')
+  );
