@@ -4,9 +4,84 @@ import './index.css';
 // hexagon tile 1: https://codepen.io/gpyne/pen/iElhp
 // hexagon tile 2: https://www.codesmite.com/article/how-to-create-pure-css-hexagonal-grids
 // hexagon tile 3: https://codepen.io/sandeep/pen/wFeKj
+
+// https://ja.reactjs.org/docs/rendering-elements.html#updating-the-rendered-element
+function tick() {
+    const element = (
+      <div>
+        <h1>Hello, world!</h1>
+        <h2>It is {new Date().toLocaleTimeString()}.</h2>
+      </div>
+    );
+
+    // ReactDOM.render(element, document.getElementById('root'));
+  }
+
+  setInterval(tick, 1000);
+  function Welcome(props) {
+    return <h1>Hello, {props.name}</h1>;
+  }
+  // https://blog.ikappio.com/drawing-with-setinterval-on-react/
+  // 
+class Tick extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            now: new Date(),
+        };
+    }
+    componentDidMount() {
+        this.intervalId = setInterval(()=> {
+                this.setState({
+                    not: new Date(),
+                });
+            }, 1000)
+    }
+    componentWillUnmount() {
+      clearInterval(this.intervalId);
+    }
+    render() {
+        return(
+            <div>
+        <h1>Hello, world!</h1>
+        <h2>It is {this.state.now.toString()}.</h2>
+      </div>
+        )
+    }
+}
+setInterval(Tick.force, 1000);
+// class Clock extends React.Component {
+//     constructor(props) {
+//       super(props);
+//       this.state = {
+//         now: new Date(),
+//       };
+//     }
+//     componentDidMount() {
+//       this.intervalId = setInterval(()=>{
+//         this.setState({
+//           now: new Date(),
+//         });
+//       }, 1000);
+//     }
+//     componentWillUnmount(){
+//       clearInterval(this.intervalId);
+//     }
+//     render () {
+//       return (
+//         <div>{this.state.now.toString()}</div>
+//       )
+//     }
+//   }
+  
+//   ReactDOM.render(<Clock />, document.getElementById("app"));
+
 class Grid extends React.Component{
     render() {
         return (
+            <div>
+            <h1><Tick /></h1>
+            <h1><Welcome name={tick()}/></h1>
             <div class="honeycomb">
             <div class="ibws-fix">
               <div class="hexagon">
@@ -140,6 +215,7 @@ class Grid extends React.Component{
                 <div class="hexagontent"></div>
               </div>
             </div>
+          </div>
           </div>
         )
     }
