@@ -9,17 +9,20 @@ import './index.css';
 function tick() {
     const element = (
       <div>
-        <h1>Hello, world!</h1>
+        <h1>Welcome</h1>
         <h2>It is {new Date().toLocaleTimeString()}.</h2>
       </div>
     );
+    return element;
 
     // ReactDOM.render(element, document.getElementById('root'));
   }
 
+  // 下記では表示更新されない。blog.ikappio.comの記事にfunctionを使った方法もある。
+  // Hookを使う。
   setInterval(tick, 1000);
   function Welcome(props) {
-    return <h1>Hello, {props.name}</h1>;
+    return <h1>Hello, {tick()}aim</h1>;
   }
   // https://blog.ikappio.com/drawing-with-setinterval-on-react/
   // 
@@ -31,11 +34,11 @@ class Tick extends React.Component{
         };
     }
     componentDidMount() {
-        this.intervalId = setInterval(()=> {
-                this.setState({
-                    not: new Date(),
-                });
-            }, 1000)
+      this.intervalId = setInterval(()=> {
+        this.setState({
+          now: new Date(),
+        });
+      }, 1000);
     }
     componentWillUnmount() {
       clearInterval(this.intervalId);
@@ -49,32 +52,6 @@ class Tick extends React.Component{
         )
     }
 }
-setInterval(Tick.force, 1000);
-// class Clock extends React.Component {
-//     constructor(props) {
-//       super(props);
-//       this.state = {
-//         now: new Date(),
-//       };
-//     }
-//     componentDidMount() {
-//       this.intervalId = setInterval(()=>{
-//         this.setState({
-//           now: new Date(),
-//         });
-//       }, 1000);
-//     }
-//     componentWillUnmount(){
-//       clearInterval(this.intervalId);
-//     }
-//     render () {
-//       return (
-//         <div>{this.state.now.toString()}</div>
-//       )
-//     }
-//   }
-  
-//   ReactDOM.render(<Clock />, document.getElementById("app"));
 
 class Grid extends React.Component{
     render() {
