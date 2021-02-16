@@ -85,6 +85,10 @@ class Grid extends React.Component{
               <div class="hexagon">
                 <div class="hexagontent">And yet don't look too good, nor talk too wise:</div>
               </div>
+              <div class="hexagon">
+                <div class="hexagontent">Added: And yet don't look too good, nor talk too wise:</div>
+              </div>
+
             </div>
             <div class="ibws-fix">
               <div class="hexagon">
