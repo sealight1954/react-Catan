@@ -82,39 +82,39 @@ class Grid extends React.Component{
               <div class="hexagon">
                 <div class="hexagontent">Or being hated, don't give way to hating,</div>
               </div>
-              <div class="hexagon">
+              {/* <div class="hexagon">
                 <div class="hexagontent">And yet don't look too good, nor talk too wise:</div>
-              </div>
-              <div class="hexagon">
+              </div> */}
+              {/* <div class="hexagon">
                 <div class="hexagontent">Added: And yet don't look too good, nor talk too wise:</div>
-              </div>
+              </div> */}
 
             </div>
             <div class="ibws-fix">
-              <div class="hexagon">
+              <div class="hexagon oddrow">
                 <div class="hexagontent">If you can dream - and not make dreams your master;</div>
               </div>
-              <div class="hexagon">
+              <div class="hexagon oddrow">
                 <div class="hexagontent">If you can think - and not make thoughts your aim;</div>
               </div>
-              <div class="hexagon">
+              <div class="hexagon oddrow">
                 <div class="hexagontent">If you can meet with Triumph and Disaster</div>
               </div>
-              <div class="hexagon">
+              <div class="hexagon oddrow">
                 <div class="hexagontent">And treat those two impostors just the same;</div>
               </div>
-              <div class="hexagon">
+              <div class="hexagon oddrow">
                 <div class="hexagontent">If you can bear to hear the truth you've spoken</div>
               </div>
-              <div class="hexagon">
+              <div class="hexagon oddrow">
                 <div class="hexagontent">Twisted by knaves to make a trap for fools,</div>
               </div>
-              <div class="hexagon">
+              <div class="hexagon oddrow">
                 <div class="hexagontent">Or watch the things you gave your life to, broken,</div>
               </div>
-              <div class="hexagon">
+              {/* <div class="hexagon oddrow">
                 <div class="hexagontent">And stoop and build 'em up with worn-out tools:</div>
-              </div>
+              </div> */}
             </div>
             <div class="ibws-fix">
               <div class="hexagon">
@@ -178,10 +178,10 @@ class Grid extends React.Component{
                 <div class="hexagontent">&mdash; Rudyard Kipling</div>
               </div>
               <div class="hexanone">
-                <div class="hexagontent"></div>
+                <div class="hexagontent">aaa</div>
               </div>
               <div class="hexagon">
-                <div class="hexagontent"></div>
+                <div class="hexagontent">bbb</div>
               </div>
               <div class="hexagon">
                 <div class="hexagontent"></div>
@@ -192,7 +192,7 @@ class Grid extends React.Component{
               <div class="hexagon">
                 <div class="hexagontent"></div>
               </div>
-              <div class="hexagon">
+              <div class="hexanone">
                 <div class="hexagontent"></div>
               </div>
             </div>
