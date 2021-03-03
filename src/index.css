@@ -21,7 +21,7 @@ body {
   top: 0;
 }
 .hexagon {
-  position: relative;
+  position: absolute;
   display: inline-block;
   /* left/right margin approx. 25% of .hexagon width + spacing */
   margin-left: 25px; 

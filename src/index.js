@@ -5,6 +5,35 @@ import './index.css';
 // hexagon tile 2: https://www.codesmite.com/article/how-to-create-pure-css-hexagonal-grids
 // hexagon tile 3: https://codepen.io/sandeep/pen/wFeKj
 
+const terrainHexaWidth = 116;
+const terrainHexaGridHeight = 100;
+const roadWidth = 20;
+const roadHeight = 20;
+const oddMargin = 58 + 13;
+
+const terrain_position_array = [
+  [1, 0],
+  [2, 0],
+  [3, 0],
+  [0, 1],
+  [1, 1],
+  [2, 1],
+  [3, 1],
+  [0, 2],
+  [1, 2],
+  [2, 2],
+  [3, 2],
+  [4, 2],
+  [0, 3],
+  [1,3],
+  [2, 3],
+  [3, 3],
+  [1, 4],
+  [2,4],
+  [3,4]
+]
+
+
 // https://ja.reactjs.org/docs/rendering-elements.html#updating-the-rendered-element
 function tick() {
     const element = (
@@ -55,8 +84,13 @@ class Tick extends React.Component{
 function TerrainHexa (props) {
   let class_name = "hexagontent"
   class_name += " terrain-hexa-btn"
+  let left = roadWidth + (roadWidth + terrainHexaWidth) * parseInt(props.x);
+  let top = roadWidth + (roadHeight + terrainHexaGridHeight) * parseInt(props.y);
+  if (parseInt(props.y) % 2 == 1){
+    left += oddMargin
+  }
   return (
-    <div class="hexagon">
+    <div class="hexagon" style={{top: top + 'px', left: left + 'px'}}>
       {/* <div class="hexagontent"> */}
       <button className={class_name}
         onClick={() => props.onClick()}
@@ -69,11 +103,16 @@ function TerrainHexa (props) {
 // TODO: class="hexaone" text comes to top, not within div box. 
 class CatanBoard extends React.Component{
     renderTerrainHexa(i) {
+      let x = "";
+      let y = "";
+      [x, y] = terrain_position_array[i]
       return (
         <TerrainHexa 
           dice={i}
           // type
           onClick={() => this.props.onClick(i)}
+          x={x}
+          y={y}
           // 多分盗賊かどうか、is_robber_thereとかがくる。
         />
       )
@@ -91,6 +130,7 @@ class CatanBoard extends React.Component{
               <div class="hexaone">
                 <div class="hexagontent"></div>
               </div>
+              {/* <button>abc</button> */}
               {this.renderTerrainHexa(0)}
               {this.renderTerrainHexa(1)}
               {this.renderTerrainHexa(2)}
