@@ -52,9 +52,25 @@ class Tick extends React.Component{
         )
     }
 }
-
+function TerrainHexa (props) {
+  return (
+    <div class="hexagon">
+      <div class="hexagontent">{props.dice}</div>
+    </div>
+  )
+}
 // TODO: class="hexaone" text comes to top, not within div box. 
-class Grid extends React.Component{
+class CatanBoard extends React.Component{
+    renderTerrainHexa(i) {
+      return (
+        <TerrainHexa 
+          dice={i}
+          // type
+          onClick={() => this.props.onClick(i)}
+          // 多分盗賊かどうか、is_robber_thereとかがくる。
+        />
+      )
+    }
     render() {
         return (
             <div>
@@ -68,15 +84,9 @@ class Grid extends React.Component{
               <div class="hexaone">
                 <div class="hexagontent"></div>
               </div>
-              <div class="hexagon">
-                <div class="hexagontent">If you can trust yourself when all men doubt you,</div>
-              </div>
-              <div class="hexagon">
-                <div class="hexagontent">But make allowance for their doubting too;</div>
-              </div>
-              <div class="hexagon">
-                <div class="hexagontent">If you can wait and not be tired by waiting,</div>
-              </div>
+              {this.renderTerrainHexa(0)}
+              {this.renderTerrainHexa(1)}
+              {this.renderTerrainHexa(2)}
               <div class="hexaone">
                 <div class="hexagontent"></div>
               </div>
@@ -96,18 +106,10 @@ class Grid extends React.Component{
               <div class="hexaone">
                 <div class="hexagontent"></div>
               </div>
-              <div class="hexagon">
-                <div class="hexagontent">If you can meet with Triumph and Disaster</div>
-              </div>
-              <div class="hexagon">
-                <div class="hexagontent">And treat those two impostors just the same;</div>
-              </div>
-              <div class="hexagon">
-                <div class="hexagontent">If you can bear to hear the truth you've spoken</div>
-              </div>
-              <div class="hexagon">
-                <div class="hexagontent">Twisted by knaves to make a trap for fools,</div>
-              </div>
+              {this.renderTerrainHexa(3)}
+              {this.renderTerrainHexa(4)}
+              {this.renderTerrainHexa(5)}
+              {this.renderTerrainHexa(6)}
               <div class="hexaone">
                 <div class="hexagontent"></div>
               </div>
@@ -126,21 +128,11 @@ class Grid extends React.Component{
               <div class="hexaone">
                 <div class="hexagontent"></div>
               </div>
-              <div class="hexagon">
-                <div class="hexagontent">And lose, and start again at your beginnings</div>
-              </div>
-              <div class="hexagon">
-                <div class="hexagontent">And never breathe a word about your loss;</div>
-              </div>
-              <div class="hexagon">
-                <div class="hexagontent">If you can force your heart and nerve and sinew</div>
-              </div>
-              <div class="hexagon">
-                <div class="hexagontent">To serve your turn long after they are gone,</div>
-              </div>
-              <div class="hexagon">
-                <div class="hexagontent">And so hold on when there is nothing in you</div>
-              </div>
+              {this.renderTerrainHexa(7)}
+              {this.renderTerrainHexa(8)}
+              {this.renderTerrainHexa(9)}
+              {this.renderTerrainHexa(10)}
+              {this.renderTerrainHexa(11)}
               <div class="hexaone">
                 <div class="hexagontent"></div>
               </div>
@@ -152,18 +144,11 @@ class Grid extends React.Component{
               <div class="hexaone">
                 <div class="hexagontent"></div>
               </div>
-              <div class="hexagon">
-                <div class="hexagontent">If neither foes nor loving friends can hurt you,</div>
-              </div>
-              <div class="hexagon">
-                <div class="hexagontent">If all men count with you, but none too much;</div>
-              </div>
-              <div class="hexagon">
-                <div class="hexagontent">If you can fill the unforgiving minute</div>
-              </div>
-              <div class="hexagon">
-                <div class="hexagontent">With sixty seconds' worth of distance run,</div>
-              </div>
+              {this.renderTerrainHexa(12)}
+              {this.renderTerrainHexa(13)}
+              {this.renderTerrainHexa(14)}
+              {this.renderTerrainHexa(15)}
+
               <div class="hexaone">
                 <div class="hexagontent"></div>
               </div>
@@ -182,15 +167,10 @@ class Grid extends React.Component{
               <div class="hexaone">
                 <div class="hexagontent"></div>
               </div>
-              <div class="hexagon">
-                <div class="hexagontent">bbb</div>
-              </div>
-              <div class="hexagon">
-                <div class="hexagontent"></div>
-              </div>
-              <div class="hexagon">
-                <div class="hexagontent"></div>
-              </div>
+              {this.renderTerrainHexa(16)}
+              {this.renderTerrainHexa(17)}
+              {this.renderTerrainHexa(18)}
+
               <div class="hexaone">
                 <div class="hexagontent">abc</div>
               </div>
@@ -204,8 +184,23 @@ class Grid extends React.Component{
     }
 }
 
+class CatanGame extends React.Component{
+  constructor(props){
+    super(props)
+  }
+  handleClick(i) {
+
+  }
+  render() {
+    return (
+      <CatanBoard 
+        onClick={(i)=> this.handleClick(i)}
+      />
+    )
+  }
+}
 
 ReactDOM.render(
-    <Grid />,
+    <CatanGame />,
     document.getElementById('root')
   );
