@@ -53,6 +53,7 @@ class Tick extends React.Component{
     }
 }
 
+// TODO: class="hexaone" text comes to top, not within div box. 
 class Grid extends React.Component{
     render() {
         return (
@@ -61,11 +62,11 @@ class Grid extends React.Component{
             <h1><Welcome name={tick()}/></h1>
             <div class="honeycomb">
             <div class="ibws-fix">
-              <div class="hexagon">
-                <div class="hexagontent">IF you can keep your head when all about you</div>
+              <div class="hexaone">
+                <div class="hexagontent"></div>
               </div>
-              <div class="hexagon">
-                <div class="hexagontent">Are losing theirs and blaming it on you,</div>
+              <div class="hexaone">
+                <div class="hexagontent"></div>
               </div>
               <div class="hexagon">
                 <div class="hexagontent">If you can trust yourself when all men doubt you,</div>
@@ -76,52 +77,54 @@ class Grid extends React.Component{
               <div class="hexagon">
                 <div class="hexagontent">If you can wait and not be tired by waiting,</div>
               </div>
-              <div class="hexagon">
-                <div class="hexagontent">Or being lied about, don't deal in lies,</div>
+              <div class="hexaone">
+                <div class="hexagontent"></div>
               </div>
-              <div class="hexagon">
-                <div class="hexagontent">Or being hated, don't give way to hating,</div>
+              <div class="hexaone">
+                <div class="hexagontent"></div>
               </div>
-              {/* <div class="hexagon">
-                <div class="hexagontent">And yet don't look too good, nor talk too wise:</div>
-              </div> */}
-              {/* <div class="hexagon">
-                <div class="hexagontent">Added: And yet don't look too good, nor talk too wise:</div>
-              </div> */}
+              <div class="hexaone">
+                <div class="hexagontent"></div>
+              </div>
+              
 
             </div>
             <div class="ibws-fix">
-              <div class="hexagon oddrow">
-                <div class="hexagontent">If you can dream - and not make dreams your master;</div>
+              <div class="hexaone">
+                <div class="hexagontent"></div>
               </div>
-              <div class="hexagon oddrow">
-                <div class="hexagontent">If you can think - and not make thoughts your aim;</div>
+              <div class="hexaone">
+                <div class="hexagontent"></div>
               </div>
-              <div class="hexagon oddrow">
+              <div class="hexagon">
                 <div class="hexagontent">If you can meet with Triumph and Disaster</div>
               </div>
-              <div class="hexagon oddrow">
+              <div class="hexagon">
                 <div class="hexagontent">And treat those two impostors just the same;</div>
               </div>
-              <div class="hexagon oddrow">
+              <div class="hexagon">
                 <div class="hexagontent">If you can bear to hear the truth you've spoken</div>
               </div>
-              <div class="hexagon oddrow">
+              <div class="hexagon">
                 <div class="hexagontent">Twisted by knaves to make a trap for fools,</div>
               </div>
-              <div class="hexagon oddrow">
-                <div class="hexagontent">Or watch the things you gave your life to, broken,</div>
+              <div class="hexaone">
+                <div class="hexagontent"></div>
               </div>
+              <div class="hexaone">
+                <div class="hexagontent"></div>
+              </div>
+              
               {/* <div class="hexagon oddrow">
                 <div class="hexagontent">And stoop and build 'em up with worn-out tools:</div>
               </div> */}
             </div>
             <div class="ibws-fix">
-              <div class="hexagon">
-                <div class="hexagontent">If you can make one heap of all your winnings</div>
+              <div class="hexaone">
+                <div class="hexagontent"></div>
               </div>
-              <div class="hexagon">
-                <div class="hexagontent">And risk it on one turn of pitch-and-toss,</div>
+              <div class="hexaone">
+                <div class="hexagontent"></div>
               </div>
               <div class="hexagon">
                 <div class="hexagontent">And lose, and start again at your beginnings</div>
@@ -138,16 +141,16 @@ class Grid extends React.Component{
               <div class="hexagon">
                 <div class="hexagontent">And so hold on when there is nothing in you</div>
               </div>
-              <div class="hexagon">
-                <div class="hexagontent">Except the Will which says to them: 'Hold on!'</div>
+              <div class="hexaone">
+                <div class="hexagontent"></div>
               </div>
             </div>
             <div class="ibws-fix">
-              <div class="hexagon">
-                <div class="hexagontent">If you can talk with crowds and keep your virtue,</div>
+              <div class="hexaone">
+                <div class="hexagontent"></div>
               </div>
-              <div class="hexagon">
-                <div class="hexagontent">' Or walk with Kings - nor lose the common touch,</div>
+              <div class="hexaone">
+                <div class="hexagontent"></div>
               </div>
               <div class="hexagon">
                 <div class="hexagontent">If neither foes nor loving friends can hurt you,</div>
@@ -161,24 +164,23 @@ class Grid extends React.Component{
               <div class="hexagon">
                 <div class="hexagontent">With sixty seconds' worth of distance run,</div>
               </div>
-              <div class="hexagon">
-                <div class="hexagontent">Yours is the Earth and everything that's in it,</div>
+              <div class="hexaone">
+                <div class="hexagontent"></div>
               </div>
-              <div class="hexagon">
-                <div class="hexagontent">And - which is more - you'll be a Man, my son!</div>
+              <div class="hexaone">
+                <div class="hexagontent"></div>
               </div>
             </div>
             <div class="ibws-fix">
-              <div class="hexagon">
+              <div class="hexaone">
                 <div class="hexagontent">
-                  <h1>IF</h1>
                 </div>
               </div>
-              <div class="hexagon">
-                <div class="hexagontent">&mdash; Rudyard Kipling</div>
+              <div class="hexaone">
+                <div class="hexagontent"></div>
               </div>
-              <div class="hexanone">
-                <div class="hexagontent">aaa</div>
+              <div class="hexaone">
+                <div class="hexagontent"></div>
               </div>
               <div class="hexagon">
                 <div class="hexagontent">bbb</div>
@@ -186,13 +188,13 @@ class Grid extends React.Component{
               <div class="hexagon">
                 <div class="hexagontent"></div>
               </div>
-              <div class="hexanone">
-                <div class="hexagontent"></div>
-              </div>
               <div class="hexagon">
                 <div class="hexagontent"></div>
               </div>
-              <div class="hexanone">
+              <div class="hexaone">
+                <div class="hexagontent">abc</div>
+              </div>
+              <div class="hexaone">
                 <div class="hexagontent"></div>
               </div>
             </div>
