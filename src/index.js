@@ -53,10 +53,17 @@ class Tick extends React.Component{
     }
 }
 function TerrainHexa (props) {
+  let class_name = "hexagontent"
+  class_name += " terrain-hexa-btn"
   return (
     <div class="hexagon">
-      <div class="hexagontent">{props.dice}</div>
+      {/* <div class="hexagontent"> */}
+      <button className={class_name}
+        onClick={() => props.onClick()}
+        
+        >{props.dice}</button>
     </div>
+    // </div>
   )
 }
 // TODO: class="hexaone" text comes to top, not within div box. 
@@ -189,7 +196,7 @@ class CatanGame extends React.Component{
     super(props)
   }
   handleClick(i) {
-
+    let a = 1;
   }
   render() {
     return (

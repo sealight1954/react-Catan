@@ -103,3 +103,7 @@ body {
   /* left: 58px; */
   /* top: 59px; */
 /*} */
+.terrain-hexa-btn{
+  background: hsl(263, 75%, 75%);
+  border: 1px solid #999;
+}
