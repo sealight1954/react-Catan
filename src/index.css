@@ -104,6 +104,34 @@ body {
   /* top: 59px; */
 /*} */
 .terrain-hexa-btn{
+  /* 中の数字ボタン */
   background: hsl(263, 75%, 75%);
-  border: 1px solid #999;
+  border: 1px solid rgb(83, 82, 82);
+}
+
+.road{
+  position: absolute;
+  background: hsl(138, 47%, 20%);
+  width: 20px;
+  height: 60px;
+}
+.roadcontent {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(90deg) ;
+  width: 240%;
+  font-size: 1.4rem;
+  line-height: 1.2;
+  z-index: 100;
+  background: hsl(138, 47%, 20%);
+}
+.lup {
+  transform: rotate(-60deg);
+}
+.rup {
+  transform: rotate(240deg);
+}
+.road-oddrow {
+  transform: translate(-32px, 0px);
 }
