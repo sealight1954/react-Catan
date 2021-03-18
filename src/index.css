@@ -98,6 +98,12 @@ body {
   margin: 0 auto;
   text-align: center;
 }
+
+.catan-board {
+  height: 300px;
+  width: 800px;
+}
+
 /* .oddrow {
   /* top: -20px; */
   /* left: 58px; */
@@ -134,4 +140,40 @@ body {
 }
 .road-oddrow {
   transform: translate(-32px, 0px);
+}
+
+.dev-road-btn{
+  width: 140px;
+  height: 50px;
+  position: absolute;
+  /* top: 50%; */
+  /* left: 50%; */
+  /* transform: translate(-50%, -50%) rotate(90deg) ; */
+  /* font-size: 1.4rem; */
+  /* line-height: 1.2; */
+  /* z-index: 100; */
+  background: hsl(137, 19%, 39%);
+}
+
+#action-btn {
+  /* float: left; See: https://www.w3schools.com/howto/howto_css_button_group.asp */
+  /* position: absolute; */
+  /* display: inline-block; */
+  /* transform: translate(50%, 50%) rotate(90deg) ; */
+  /* left/right margin approx. 25% of .hexagon width + spacing */
+  /* margin-left: 25px;  */
+  /* margin-right: 30px; */
+  /* background-color: hsl(78, 80%, 47%); */
+  /* background-color: hsl(220, 75%, 75%); */
+  /* text-align: center; */
+  /* transform: rotate(-90deg); */
+  overflow: hidden;
+}
+
+#action-btn li {
+  /* position: relative; */
+  width: 140px;
+  text-align: center;
+  background-color: #333;
+  float: left;
 }

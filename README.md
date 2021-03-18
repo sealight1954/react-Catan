@@ -1,3 +1,18 @@
+# 概要
+- サーバー側の機能は何か？
+  - 最小構成とするなら、履歴を溜めていくだけで良い。状態遷移は個々のアプリケーションが実行する。
+
+
+
+## HTTP
+- [fetchの使い方](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)
+    - requestとresponseのjsonを定義する。1関数に1URLを対応させる？
+### APIs
+Action: `road, settlement, city, development card, change`をどういうAPIで作るか？前4つは消費のみ。changeは取得もあり。
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
