@@ -32,6 +32,7 @@ const terrain_position_array = [
   [2, 4],
   [3, 4]
 ]
+const num_terrains = 19;
 
 const num_roads = 72;
 const road_x_offset = 33;
@@ -113,10 +114,13 @@ const road_position_dict = {
   "71": [7, 10],
 }
 
-class LocalGameServer {
+const num_points = 54;
+class LocalGameClient {
   constructor() {
     this.roads = Object.keys(road_position_dict)
     this.hexa_tiles = Array(terrain_position_array.length)
+    this.points = Array(num_points);
+    this.myname = "LocalGameClient test"
   }
 }
 
@@ -166,6 +170,16 @@ class Tick extends React.Component {
       </div>
     )
   }
+}
+function ActionButton(props) {
+  // Render Action Button
+  return (
+    <li>
+      <button class="dev-road-btn"
+        onClick={() => props.onClick()}
+      >{props.name}</button>
+    </li>
+  )
 }
 function TerrainHexa(props) {
   let class_name = "hexagontent"
@@ -240,204 +254,36 @@ class CatanBoard extends React.Component {
       ></Road>
     )
   }
+  renderActionButton(idx, value) {
+    return(
+      <ActionButton
+        name={value}
+        onClick={()=>this.props.onClick(idx)}
+      ></ActionButton>
+    )
+  }
   render() {
     return (
       <div>
-        <h1><Tick /></h1>
-        <h1><Welcome name={tick()} /></h1>
+        {/* <h1><Tick /></h1> */}
+        {/* <h1><Welcome name={tick()} /></h1> */}
         {/* TODO: catan-board aware of its position */}
         <div class="catan-board">
-          <div>{this.renderRoad(0)}</div>
-          <div>{this.renderRoad(1)}</div>
-          <div>{this.renderRoad(2)}</div>
-          <div>{this.renderRoad(3)}</div>
-          <div>{this.renderRoad(4)}</div>
-          <div>{this.renderRoad(5)}</div>
-          <div>{this.renderRoad(6)}</div>
-          <div>{this.renderRoad(7)}</div>
-          <div>{this.renderRoad(8)}</div>
-          <div>{this.renderRoad(9)}</div>
-          <div>{this.renderRoad(10)}</div>
-          <div>{this.renderRoad(11)}</div>
-          <div>{this.renderRoad(12)}</div>
-          <div>{this.renderRoad(13)}</div>
-          <div>{this.renderRoad(14)}</div>
-          <div>{this.renderRoad(15)}</div>
-          <div>{this.renderRoad(16)}</div>
-          <div>{this.renderRoad(17)}</div>
-          <div>{this.renderRoad(18)}</div>
-          <div>{this.renderRoad(19)}</div>
-          <div>{this.renderRoad(20)}</div>
-          <div>{this.renderRoad(21)}</div>
-          <div>{this.renderRoad(22)}</div>
-          <div>{this.renderRoad(23)}</div>
-          <div>{this.renderRoad(24)}</div>
-          <div>{this.renderRoad(25)}</div>
-          <div>{this.renderRoad(26)}</div>
-          <div>{this.renderRoad(27)}</div>
-          <div>{this.renderRoad(28)}</div>
-          <div>{this.renderRoad(29)}</div>
-          <div>{this.renderRoad(30)}</div>
-          <div>{this.renderRoad(31)}</div>
-          <div>{this.renderRoad(32)}</div>
-          <div>{this.renderRoad(33)}</div>
-          <div>{this.renderRoad(34)}</div>
-          <div>{this.renderRoad(35)}</div>
-          <div>{this.renderRoad(36)}</div>
-          <div>{this.renderRoad(37)}</div>
-          <div>{this.renderRoad(38)}</div>
-          <div>{this.renderRoad(39)}</div>
-          <div>{this.renderRoad(40)}</div>
-          <div>{this.renderRoad(41)}</div>
-          <div>{this.renderRoad(42)}</div>
-          <div>{this.renderRoad(43)}</div>
-          <div>{this.renderRoad(44)}</div>
-          <div>{this.renderRoad(45)}</div>
-          <div>{this.renderRoad(46)}</div>
-          <div>{this.renderRoad(47)}</div>
-          <div>{this.renderRoad(48)}</div>
-          <div>{this.renderRoad(49)}</div>
-          <div>{this.renderRoad(50)}</div>
-          <div>{this.renderRoad(51)}</div>
-          <div>{this.renderRoad(52)}</div>
-          <div>{this.renderRoad(53)}</div>
-          <div>{this.renderRoad(54)}</div>
-          <div>{this.renderRoad(55)}</div>
-          <div>{this.renderRoad(56)}</div>
-          <div>{this.renderRoad(57)}</div>
-          <div>{this.renderRoad(58)}</div>
-          <div>{this.renderRoad(59)}</div>
-          <div>{this.renderRoad(60)}</div>
-          <div>{this.renderRoad(61)}</div>
-          <div>{this.renderRoad(62)}</div>
-          <div>{this.renderRoad(63)}</div>
-          <div>{this.renderRoad(64)}</div>
-          <div>{this.renderRoad(65)}</div>
-          <div>{this.renderRoad(66)}</div>
-          <div>{this.renderRoad(67)}</div>
-          <div>{this.renderRoad(68)}</div>
-          <div>{this.renderRoad(69)}</div>
-          <div>{this.renderRoad(70)}</div>
-          <div>{this.renderRoad(71)}</div>
-          <div class="honeycomb">
-            <div class="ibws-fix">
-              <div class="hexaone">
-                <div class="hexagontent"></div>
-              </div>
-              <div class="hexaone">
-                <div class="hexagontent"></div>
-              </div>
-              {/* <button>abc</button> */}
-              {this.renderTerrainHexa(0)}
-              {this.renderTerrainHexa(1)}
-              {this.renderTerrainHexa(2)}
-              <div class="hexaone">
-                <div class="hexagontent"></div>
-              </div>
-              <div class="hexaone">
-                <div class="hexagontent"></div>
-              </div>
-              <div class="hexaone">
-                <div class="hexagontent"></div>
-              </div>
-            </div>
-            <div class="ibws-fix">
-              <div class="hexaone">
-                <div class="hexagontent"></div>
-              </div>
-              <div class="hexaone">
-                <div class="hexagontent"></div>
-              </div>
-              {this.renderTerrainHexa(3)}
-              {this.renderTerrainHexa(4)}
-              {this.renderTerrainHexa(5)}
-              {this.renderTerrainHexa(6)}
-              <div class="hexaone">
-                <div class="hexagontent"></div>
-              </div>
-              <div class="hexaone">
-                <div class="hexagontent"></div>
-              </div>
-
-              {/* <div class="hexagon oddrow">
-                <div class="hexagontent">And stoop and build 'em up with worn-out tools:</div>
-              </div> */}
-            </div>
-            <div class="ibws-fix">
-              <div class="hexaone">
-                <div class="hexagontent"></div>
-              </div>
-              <div class="hexaone">
-                <div class="hexagontent"></div>
-              </div>
-              {this.renderTerrainHexa(7)}
-              {this.renderTerrainHexa(8)}
-              {this.renderTerrainHexa(9)}
-              {this.renderTerrainHexa(10)}
-              {this.renderTerrainHexa(11)}
-              <div class="hexaone">
-                <div class="hexagontent"></div>
-              </div>
-            </div>
-            <div class="ibws-fix">
-              <div class="hexaone">
-                <div class="hexagontent"></div>
-              </div>
-              <div class="hexaone">
-                <div class="hexagontent"></div>
-              </div>
-              {this.renderTerrainHexa(12)}
-              {this.renderTerrainHexa(13)}
-              {this.renderTerrainHexa(14)}
-              {this.renderTerrainHexa(15)}
-
-              <div class="hexaone">
-                <div class="hexagontent"></div>
-              </div>
-              <div class="hexaone">
-                <div class="hexagontent"></div>
-              </div>
-            </div>
-            <div class="ibws-fix">
-              <div class="hexaone">
-                <div class="hexagontent">
-                </div>
-              </div>
-              <div class="hexaone">
-                <div class="hexagontent"></div>
-              </div>
-              <div class="hexaone">
-                <div class="hexagontent"></div>
-              </div>
-              {this.renderTerrainHexa(16)}
-              {this.renderTerrainHexa(17)}
-              {this.renderTerrainHexa(18)}
-
-              <div class="hexaone">
-                <div class="hexagontent">abc</div>
-              </div>
-              <div class="hexaone">
-                <div class="hexagontent"></div>
-              </div>
-            </div>
-          </div>
+          {[...Array(num_roads).keys()].map(x => this.renderRoad(x))}
+          {[...Array(num_terrains).keys()].map(x => this.renderTerrainHexa(x))}
         </div>
+        
         {/* Developerツールを開かないと登場しない。 */}
         {/* positionを絶対位置表記で入力していくのがつらい */}
         {/* See: https://developer.mozilla.org/ja/docs/Web/CSS/CSS_Grid_Layout/Box_Alignment_in_CSS_Grid_Layout */}
-        <div><ul id="action-btn">
-          {/* <li><button class="dev-road-btn" style={{top: '800px', left: '100px'}}>Build Road</button></li>
-            <li><button class="dev-road-btn" style={{top: '850px', left: '100px'}}>Build Settlement</button></li>
-            <li><button class="dev-road-btn" style={{top: '900px', left: '100px'}}>Build City</button></li>
-            <li><button class="dev-road-btn" style={{top: '950px', left: '100px'}}>Buy Development Card</button></li>
-            <li><button class="dev-road-btn" style={{top: '1000px', left: '100px'}}>4</button></li> */}
-          <li><button class="dev-road-btn">Build Road</button></li>
-          <li><button class="dev-road-btn">Build Settlement</button></li>
-          <li><button class="dev-road-btn">Build City</button></li>
-          <li><button class="dev-road-btn">Buy Development Card</button></li>
-          <li><button class="dev-road-btn">4dfa</button></li>
+        <div><ul id="action-btn-ul">
+          {[...["Build Road", "Build Settlement", "Build City", 
+          "Buy Development Card", "Change", "User Change", "Use Card"
+          ].entries()].map(([x, y]) => this.renderActionButton(x, y))}
+          
 
-        </ul></div>
+        </ul>
+        </div>
       </div>
     )
   }
@@ -446,15 +292,19 @@ class CatanBoard extends React.Component {
 class CatanGame extends React.Component {
   constructor(props) {
     super(props)
+    this.game_client = new LocalGameClient();
   }
   handleClick(i) {
     let a = 1;
   }
   render() {
     return (
-      <CatanBoard
-        onClick={(i) => this.handleClick(i)}
-      />
+      <div>
+        <CatanBoard
+          onClick={(i) => this.handleClick(i)}
+        />
+        <div>{this.game_client.myname}</div>
+      </div>
     )
   }
 }

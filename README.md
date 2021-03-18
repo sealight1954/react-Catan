@@ -2,7 +2,19 @@
 - サーバー側の機能は何か？
   - 最小構成とするなら、履歴を溜めていくだけで良い。状態遷移は個々のアプリケーションが実行する。
 
-
+## UI
+- [ ] Clickをどう処理するのか？
+  - [ ] CatanGameにClickの全関数配置する
+    - [ ] 内部的にはLocalGameClientの関数呼び出す。
+    - [ ] API化できるようdictなりjsonなりで書く。
+    - [ ] stringに直して渡す？
+    - [ ] あとでHTTPGameClientに切り替える
+      - [ ] これを想定しても、clientのI/Fは文字列でなくて良い。
+  - [ ] ClickはAction(Dice/Build/Buy Cardなど)とSelection(Build Roadならroadタイルと資源(資源は自明だから選択制にしない？))
+    - [ ] ユーザーの行動はAction -> Selectionの順番？それともSelection->Actionの順番？
+      - [ ] 前者の方が絞り込みできて嬉しい。
+      - [ ] Selectionした後のConfirmボタンが必要そう
+        - [ ] これは選択しているActionボタンの表示を変えて受け付ける、など。
 
 ## HTTP
 - [fetchの使い方](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)
