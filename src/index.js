@@ -1,10 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import LocalGameClient from './local_client/LocalGameClient'
+import counter from './reducers'
+import { createStore } from 'redux'
+
 // hexagon tile 1: https://codepen.io/gpyne/pen/iElhp
 // hexagon tile 2: https://www.codesmite.com/article/how-to-create-pure-css-hexagonal-grids
 // hexagon tile 3: https://codepen.io/sandeep/pen/wFeKj
-
+const store = createStore(counter)
+// render()
 const terrainHexaWidth = 116;
 const terrainHexaGridHeight = 100;
 const roadWidth = 20;
@@ -34,12 +39,11 @@ const terrain_position_array = [
 ]
 const num_terrains = 19;
 
-const num_roads = 72;
-const road_x_offset = 33;
-const road_y_offset = -10;
-const road_grid_width = 68;
-const road_grid_height = 60;
-const road_position_dict = {
+const edge_x_offset = 33;
+const edge_y_offset = -10;
+const edge_grid_width = 68;
+const edge_grid_height = 60;
+const edge_position_dict = {
   "0": [2, 0],
   "1": [3, 0],
   "2": [4, 0],
@@ -113,16 +117,36 @@ const road_position_dict = {
   "70": [6, 10],
   "71": [7, 10],
 }
+const num_edges = Object.keys(edge_position_dict).length;
 
-const num_points = 54;
-class LocalGameClient {
-  constructor() {
-    this.roads = Object.keys(road_position_dict)
-    this.hexa_tiles = Array(terrain_position_array.length)
-    this.points = Array(num_points);
-    this.myname = "LocalGameClient test"
+class Player {
+  constructor (who_am_i){
+    // Resoource
+    this.Lumber = 0;
+    this.Brick = 0;
+    this.Grain = 0;
+    this.Wool = 0;
+    this.Ore = 0;
+    this.Cards = [];
+    this.hasLargest = false;
+    this.hasLongest = false;
+    this.usedKnights = 0;
+    this.who_am_i = who_am_i;
+    // usedCards?
   }
 }
+
+const resourceTypes = {
+  Lumber: 0,
+  Brick: 1,
+  Grain: 2,
+  Wool: 3,
+  Ore: 4,
+}
+
+
+const num_nodes = 54;
+
 
 // https://ja.reactjs.org/docs/rendering-elements.html#updating-the-rendered-element
 function tick() {
@@ -184,8 +208,8 @@ function ActionButton(props) {
 function TerrainHexa(props) {
   let class_name = "hexagontent"
   class_name += " terrain-hexa-btn"
-  let left = roadWidth + (roadWidth + terrainHexaWidth) * parseInt(props.x);
-  let top = roadWidth + (roadHeight + terrainHexaGridHeight) * parseInt(props.y);
+  let left = parseInt(props.offset_x) + roadWidth + (roadWidth + terrainHexaWidth) * parseInt(props.x);
+  let top = parseInt(props.offset_y) + roadWidth + (roadHeight + terrainHexaGridHeight) * parseInt(props.y);
   if (parseInt(props.y) % 2 == 1) {
     left += oddMargin
   }
@@ -200,7 +224,7 @@ function TerrainHexa(props) {
     // </div>
   )
 }
-function Road(props) {
+function EdgeDOM(props) {
   let class_name = "road";
   let x = parseInt(props.x);
   let y = parseInt(props.y);
@@ -212,8 +236,8 @@ function Road(props) {
   } else {
     class_name += " road-oddrow"
   }
-  let left = road_x_offset + road_grid_width * parseInt(x);
-  let top = road_y_offset + road_grid_height * parseInt(y);
+  let left = parseInt(props.offset_x) + edge_x_offset + edge_grid_width * parseInt(x);
+  let top = parseInt(props.offset_y) + edge_y_offset + edge_grid_height * parseInt(y);
   // http://www.tohoho-web.com/css/prop/transform-origin.htm
   // transform_originを設定すること
   return (
@@ -226,6 +250,33 @@ function Road(props) {
 }
 // TODO: class="hexaone" text comes to top, not within div box. 
 class CatanBoard extends React.Component {
+  // Class fields: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Public_class_fields
+  // constructorの中に書かなくて良い？
+  // setはできた。何に使う？
+  state = {
+    offset_x: 0,
+    offset_y: 0,
+  };
+
+  element = React.createRef();
+
+  onWindowResize = () => {
+    if (this.element.current) {
+      const offset_dom = this.element.current.getBoundingClientRect();
+      const offset_x = offset_dom.left;
+      const offset_y = offset_dom.top;
+      this.setState({offset_x, offset_y}, () => {
+        console.log(this.state);
+        });
+    }
+  };
+  componentDidMount() {
+    window.addEventListener('resize', this.onWindowResize);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.onWindowResize);
+  }
   renderTerrainHexa(i) {
     let x = "";
     let y = "";
@@ -237,28 +288,32 @@ class CatanBoard extends React.Component {
         onClick={() => this.props.onClick(i)}
         x={x}
         y={y}
+        offset_x={this.state.offset_x}
+        offset_y={this.state.offset_y}
       // 多分盗賊かどうか、is_robber_thereとかがくる。
       />
     )
   }
-  renderRoad(i) {
+  renderEdge(i) {
     let x = "";
     let y = "";
-    [x, y] = road_position_dict[`${i}`]
+    [x, y] = edge_position_dict[`${i}`]
     return (
-      <Road
-        // TODO: onClick to be onClickRoad()?
+      <EdgeDOM
+        // TODO: onClick to be onClickEdge()?
         onClick={() => this.props.onClick(i)}
         x={x}
         y={y}
-      ></Road>
+        offset_x={this.state.offset_x}
+        offset_y={this.state.offset_y}
+      ></EdgeDOM>
     )
   }
   renderActionButton(idx, value) {
     return(
       <ActionButton
         name={value}
-        onClick={()=>this.props.onClick(idx)}
+        onClick={()=>this.props.onClickActionButton(idx)}
       ></ActionButton>
     )
   }
@@ -268,42 +323,117 @@ class CatanBoard extends React.Component {
         {/* <h1><Tick /></h1> */}
         {/* <h1><Welcome name={tick()} /></h1> */}
         {/* TODO: catan-board aware of its position */}
-        <div class="catan-board">
-          {[...Array(num_roads).keys()].map(x => this.renderRoad(x))}
+        <div class="catan-board" ref={this.element}>
+          {[...Array(num_edges).keys()].map(x => this.renderEdge(x))}
           {[...Array(num_terrains).keys()].map(x => this.renderTerrainHexa(x))}
         </div>
         
         {/* Developerツールを開かないと登場しない。 */}
         {/* positionを絶対位置表記で入力していくのがつらい */}
         {/* See: https://developer.mozilla.org/ja/docs/Web/CSS/CSS_Grid_Layout/Box_Alignment_in_CSS_Grid_Layout */}
-        <div><ul id="action-btn-ul">
-          {[...["Build Road", "Build Settlement", "Build City", 
-          "Buy Development Card", "Change", "User Change", "Use Card"
-          ].entries()].map(([x, y]) => this.renderActionButton(x, y))}
-          
+        <div>
+          <ul id="action-btn-ul">
+            {[...["Build Road", "Build Settlement", "Build City", 
+            "Buy Development Card", "Change", "User Change", "Use Card"
+            ].entries()].map(([x, y]) => this.renderActionButton(x, y))}
+            
 
-        </ul>
+          </ul>
         </div>
       </div>
     )
   }
+
 }
 
 class CatanGame extends React.Component {
   constructor(props) {
+    
     super(props)
-    this.game_client = new LocalGameClient();
+    const snapshot = {
+      // Board
+      terrains: [...Array(num_terrains).entries()].map((i, v) => ({
+        // TODO: Randomly locate terrains and dices.
+        // Dice rolls and resources are given externally.
+        dice: 0, 
+        resourceType: 0
+      })),
+      // TODO: Define "No road" state somewhere?
+      edges: [...Array(num_edges)].map(() => null),
+      nodes: [...Array(num_nodes)].map(() => (
+        {
+          player: null,
+          is_city: false, // How to obtain city or settlement?
+          port: null,
+          from: null, // TODO All / Individual resources. All: 3-1 change, Ind: 2-1 change
+        })
+      ),
+      // Action: Need to be request body.
+      prevAction: {
+        player: 0,
+        actionType: 0,
+        consume: [0, 0, 0, 0, 0]
+        // response: "Game started"
+      },
+      response: "Game started",
+      // Player
+      // TODO: 4人以外対戦?
+      players: [...Array(4).entries()].map((i, v) => new Player(i))
+    }
+    this.state = {
+      // 盤面をリストで持つ
+      history: [snapshot]
+    }
+    this.game_client = new LocalGameClient(snapshot);
+    this.state.stepNumber = 0
   }
   handleClick(i) {
     let a = 1;
   }
+  handleClickActionButton(i){
+    let b = 1;
+    if (i == 0){
+      // Build Roadが他のところでも文字列で使われているので共通化する。
+      // 2つめの引数は何になる？資源？資源は送る時点で決まっていて、処理できるかできないか。
+
+      // 場所とか。
+      const road_position = [0, 1];
+      this.game_client.send_action('Build Road', road_position)
+      
+    }
+  }
+  jumpTO(step) {
+    this.setState({
+      stepNumber: step,
+
+      // whoIsNext: 
+    });
+  }
   render() {
+    const history = this.state.history;
+    const current = history[this.state.stepNumber]
+    const moves = history.map((step, move) =>{
+      // TODO: description to be action description
+      const desc = move ? 
+      'Go to move #' + move:
+      'Go to game start';
+      return (
+        <li key={move}>
+          <button onClick={() => this.jumpTo(move)}>{desc}</button>
+        </li>
+      );
+    });
     return (
       <div>
         <CatanBoard
           onClick={(i) => this.handleClick(i)}
+          // これは合法
+          onClickActionButton={(i) => this.handleClickActionButton(i)}
+          edges={current.edges}
+          
         />
         <div>{this.game_client.myname}</div>
+        <div><ol>{moves}</ol></div>
       </div>
     )
   }
